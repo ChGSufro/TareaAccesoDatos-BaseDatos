@@ -1,20 +1,29 @@
 package sql;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class SQL {
 
-    private final String url = "jdbc:postgresql://base-de-datos.cwl2z8i6c6vy.us-east-1.rds.amazonaws.com/CanesFelinos";
-    private final String user = "postgres";
-    private final String password = "C#20gc15";
+
+    private String url;
+    private String user;
+    private String password;
     private Connection conexion;
     private Statement statement;
 
     public SQL() {
         try {
+            Properties prop = new Properties();
+            prop.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+            url = prop.getProperty("url");
+            user = prop.getProperty("user");
+            password = prop.getProperty("password");
+
             conexion = conectar_base_datos();
             statement = conexion.createStatement();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             System.out.println("Error al conectar a la base de datos");
             e.printStackTrace();
         }
