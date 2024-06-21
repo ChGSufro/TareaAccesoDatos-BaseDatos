@@ -47,7 +47,7 @@ public class SQL {
     }
 
     public ResultSet get_datos_animal() throws SQLException {
-        return statement.executeQuery("SELECT * FROM animal");
+        return statement.executeQuery("SELECT * FROM Animal");
     }
 
     public boolean adoptanteExiste(String rut) throws SQLException {
@@ -69,6 +69,22 @@ public class SQL {
             preparedStatement.setString(5, direccion);
             preparedStatement.setString(6, telefono);
             preparedStatement.setString(7, correo);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void actualizarEstadoAnimal(String rutAnimal) throws SQLException {
+        String query = "UPDATE Animal SET estado = 'Adoptado' WHERE rut_mascota = ?";
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, rutAnimal);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public void eliminarAdoptante(String rut) throws SQLException {
+        String query = "DELETE FROM Adoptante WHERE rut_usuario = ?";
+        try (PreparedStatement preparedStatement = conexion.prepareStatement(query)) {
+            preparedStatement.setString(1, rut);
             preparedStatement.executeUpdate();
         }
     }
