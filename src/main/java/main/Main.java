@@ -7,7 +7,10 @@ public class Main {
     public static void main(String[] args) {
         SQL sql = new SQL();
         Menu menu = new Menu(sql);
-        menu.iniciar();
-
+        try {
+            menu.iniciar();
+        } catch (RuntimeException error){
+            System.out.println(error.getMessage());
+        }
     }
 }
