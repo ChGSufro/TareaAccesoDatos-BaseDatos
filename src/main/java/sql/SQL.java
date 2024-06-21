@@ -110,6 +110,13 @@ public class SQL {
         return resultSet.next();
     }
 
+    public void bloquearAnimal(String rut) throws SQLException {
+        String query = "SELECT * FROM Animal WHERE rut_mascota = ? FOR UPDATE";
+        PreparedStatement preparedStatement = conexion.prepareStatement(query);
+        preparedStatement.setString(1, rut);
+        preparedStatement.executeUpdate();
+    }
+
     public Boolean animalAdoptado(String rut) throws SQLException {
         String query = "SELECT 1 FROM Animal WHERE rut_mascota = ? AND estado = 'Adoptado'";
         PreparedStatement preparedStatement = conexion.prepareStatement(query);

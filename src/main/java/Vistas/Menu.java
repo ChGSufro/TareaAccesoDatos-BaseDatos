@@ -77,6 +77,13 @@ public class Menu {
                 System.out.println("El animal ya ha sido adoptado.");
                 return;
             }
+            sql.bloquearAnimal(rutAnimal);
+
+            if (!consultarConfirmacion()){
+                System.out.println("Operación cancelada.");
+                return;
+            }
+
             sql.actualizarEstadoAnimalAdoptado(rutAnimal);
             System.out.println("Estado del animal actualizado a 'Adoptado'.");
 
@@ -202,7 +209,6 @@ public class Menu {
             }
 
             System.out.println("Error al eliminar el adoptante");
-            e.printStackTrace();
         }
     }
 
