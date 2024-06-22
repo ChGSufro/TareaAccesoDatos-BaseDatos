@@ -94,6 +94,7 @@ public class Menu {
 
         } catch (SQLException e) {
             System.out.println("Error al procesar la adopcion. \nIntente nuevamente o pruebe mas tarde.");
+            e.printStackTrace();
 
             try{
                 sql.rollback();;

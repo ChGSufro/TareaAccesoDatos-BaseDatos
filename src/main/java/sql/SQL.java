@@ -114,7 +114,7 @@ public class SQL {
         String query = "SELECT * FROM Animal WHERE rut_mascota = ? FOR UPDATE";
         PreparedStatement preparedStatement = conexion.prepareStatement(query);
         preparedStatement.setString(1, rut);
-        preparedStatement.executeUpdate();
+        preparedStatement.executeQuery();
     }
 
     public Boolean animalAdoptado(String rut) throws SQLException {
